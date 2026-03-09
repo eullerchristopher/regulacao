@@ -23,11 +23,11 @@ pypdf==3.11.0
 python-dotenv==1.2.2
 PyYAML==6.0.3
 qrcode==8.2
-reportlab==4.4.10
+reportlab==4.0.9
 rlPyCairo==0.4.0
 six==1.17.0
 sqlparse==0.5.5
-svglib==1.6.0
+svglib==1.5.1
 tinycss2==1.5.1
 tzdata==2025.3
 tzlocal==5.3.1
