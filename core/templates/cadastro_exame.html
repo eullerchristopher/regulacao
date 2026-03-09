@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/cadastro_solicitacao.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <main class="main">
+        <!----------------------- CADASTRO EXAME ----------------------->
+        <section class="cadastro" id="Cadastro">
+            <div class="cadastro_header container">
+                <h2>CADASTRAR PACIENTE - EXAME</h2>
+            </div>
+            <div class="form-container container">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-grid">
+                        <div>
+                            <label>Nome do Paciente</label>
+                            <input type="text" name="nome" required>
+                        </div>
+                        <div>
+                            <label>Nº do Cartão SUS</label>
+                            <input type="text" name="sus" maxlength="15" required>
+                        </div>
+                        <div>
+                            <label>Telefone</label>
+                            <input type="tel" name="telefone" pattern="\(\d{2}\)\s\d{5}-\d{4}"
+                                placeholder="(84) 99999-9999" required>
+                        </div>
+                        <div>
+                            <label>UBS</label>
+                            <select name="ubs" required>
+                                <option value="">Selecione a UBS</option>
+                                <option>Centro 1</option>
+                                <option>Centro 2</option>
+                                <option>Sertãozinho 1</option>
+                                <option>Sertãozinho 2</option>
+                                <option>Jiqui 1</option>
+                                <option>Jiqui 2</option>
+                                <option>Areia Branca 1</option>
+                                <option>Areia Branca 2</option>
+                                <option>Areia Branca 3</option>
+                                <option>Lagoa de São João</option>
+                                <option>Barra do Cunhaú</option>
+                                <option>Outeiro</option>
+                                <option>Piquiri 1</option>
+                                <option>Piquiri 2</option>
+                                <option>Piquiri 3</option>
+                                <option>Meira Lima 1</option>
+                                <option>Meira Lima 2</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Agente de Saúde</label>
+                            <input type="text" name="agente_saude">
+                        </div>
+                        <div>
+                            <label>Exame</label>
+                            <select name="exame" required>
+                                <option value="">Selecione</option>
+                                <option>Ultrassonografia</option>
+                                <option>Endoscopia</option>
+                                <option>Ecocardiograma</option>
+                                <option>Tomografia</option>
+                                <option>Ressonância</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="botoes">
+                        <a href="{% url 'regulacao' %}" class="btn btn-secundario">Voltar</a>
+                        <a href="{% url 'listar_exame' %}" class="btn btn-secundario">Ver Lista de Pacientes</a>
+                        <button type="submit" class="btn btn-primary">Cadastrar Solicitação</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!----------------------- SCRIPTS ----------------------->
+    <script src="https://kit.fontawesome.com/2f89107e0d.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
+{% endblock %}

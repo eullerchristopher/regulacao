@@ -1,0 +1,168 @@
+/* =============== CADASTRO SOLICITAÇÃO =============== */
+
+.cadastro {
+  margin-top: 2rem;
+  min-height: 100vh;
+}
+
+.cadastro_header h2 {
+  font-family: var(--font-titulo);
+  color: var(--azul);
+  font-size: 1.7rem;
+}
+
+.form-container {
+  margin-top: 2rem;
+  background: #ffffff;
+  padding: 45px;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e4eef3;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #34495e;
+  text-transform: uppercase;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #d6e4ec;
+  background: #f9fcfe;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+input:hover,
+select:hover {
+  border-color: #b8d6e4;
+  background: #ffffff;
+}
+
+input:focus,
+select:focus {
+  border-color: #0f6c94;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 108, 148, 0.12);
+  outline: none;
+}
+
+.botoes {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0f6c94, #0b5776);
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 25px rgba(15, 108, 148, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15, 108, 148, 0.35);
+}
+
+.btn-secundario {
+  background: #fff;
+  border: 1.5px solid #0f6c94;
+  color: #0f6c94;
+}
+
+.btn-secundario:hover {
+  background: #0f6c94;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/*=============== RESPONSIVIDADE ===============*/
+
+/* Dispositivos móveis (320px a 480px) */
+@media (min-width: 320px) and (max-width: 480px) {
+
+  /* CADASTRO */
+
+  .form-container {
+    padding: 30px;
+  }
+
+  .botoes {
+    justify-content: center;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+
+}
+
+/* iPads e tablets (481px a 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+
+  /* FORM */
+
+  .form-container {
+    padding: 30px;
+  }
+
+  .botoes {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* CADASTRO */
+
+  .form-container {
+    padding: 30px;
+  }
+
+  .botoes {
+    justify-content: center;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+}

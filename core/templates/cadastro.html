@@ -1,0 +1,63 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="{% static 'assets/styles/login.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="{% static 'assets/img/logo_img.jpeg' %}" class="logo">
+            <h1>Criar Conta</h1>
+            <p class="subtitle">Cadastro de usuário no sistema</p>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label>Usuário</label>
+                    <input type="text" name="username" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" name="password1" placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Confirmar Senha</label>
+                    <input type="password" name="password2" placeholder="Confirme sua senha" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo de Usuário</label>
+
+                    <select name="grupo" required>
+                        <option value="">Selecione o grupo</option>
+                        <option value="regulador">Regulador</option>
+                        <option value="ubs">UBS</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-login">
+                    Cadastrar
+                </button>
+                <a href="{% url 'login' %}" class="btn-cadastro">
+                    Voltar para Login
+                </a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

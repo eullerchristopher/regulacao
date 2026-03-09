@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/agenda.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <!----------------------- MAIN ----------------------->
+    <main class="main">
+        <section class="section-agenda container">
+            <div class="agenda-container">
+                <div class="agenda-card">
+                    <div class="agenda-header">
+                        <h2>Criar Agenda</h2>
+                    </div>
+                    <div class="agenda-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Especialidade</label>
+                                <select name="especialidade">
+                                    {% for esp in especialidades %}
+                                    <option value="{{ esp.0 }}">{{ esp.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" name="data">
+                            </div>
+                            <div class="form-group">
+                                <label>Total de vagas</label>
+                                <input type="number" name="total_vagas">
+                            </div>
+                            <div class="form-group">
+                                <label>Vagas por UBS</label>
+                                <input type="number" name="vagas_por_ubs">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    Criar Agenda
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+
+</html>
+
+{% endblock %}

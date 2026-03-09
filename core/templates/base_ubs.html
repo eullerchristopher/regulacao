@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Regulação</title>
+    <link rel="stylesheet" href="{% static 'assets/styles/base.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/logo_img.jpeg' %}">
+    <script src="https://kit.fontawesome.com/2f89107e0d.js" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/js/base.js' %}"></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav_logo">
+                <a href="{% url 'regulacao' %}" class="nav_logo">
+                    <img src="{% static 'assets/img/logo.png' %}">
+                </a>
+            </div>
+
+            <div class="nav_menu">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="{% url 'ubs' %}" class="nav_link active-link">Home</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#Agendar" class="nav_link">Agendar</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#Regular" class="nav_link">Sistemas</a>
+                    </li>
+                     <li class="nav_item">
+                        <a href="https://wa.me/5584994669322" class="nav_link">Contato</a>
+                    </li>
+                </ul>
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="nav_user">
+                <div class="user_box">
+                    
+                    <a class="user_info">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="username">{{ user.username }}</span>
+                    </a>
+
+                  
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout_button">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer">
+        <p>
+            © 2025 Secretaria Municipal de Saúde - Canguaretama.
+        </p>
+
+        <p>
+            Desenvolvido por Euller Christopher
+        </p>
+    </footer>
+</body>
+
+</html>

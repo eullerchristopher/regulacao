@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/regulacao.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <!----------------------- MAIN ----------------------->
+    <main class="main">
+        <!----------------------- CANGUARETAMA ----------------------->
+        <section class="regulaçao">
+            <div class="regulaçao_overlay"></div>
+            <div class="regulaçao_data">
+                <h2>REGULAÇÃO</h2>
+            </div>
+        </section>
+        <!----------------------- HOME ----------------------->
+        <section class="home" id="Home">
+            <div class="home_header container">
+                <h2>LINKS RÁPIDOS</h2>
+            </div>
+            <div class="home_data container">
+                <div class="home_button">
+                    <a href="https://sisregiii.saude.gov.br/" class="btn-link">
+                        <i class="fas fa-hospital"></i> SISREG III
+                    </a>
+                    <a href="https://regulacirurgia.saude.rn.gov.br/index.php?class=LoginForm" class="btn-link">
+                        <i class="fas fa-user-md"></i> REGULA CIRURGIA
+                    </a>
+                    <a href="https://ambulatorial.saude.rn.gov.br/" class="btn-link">
+                        <i class="fas fa-procedures"></i> REGULA RN
+                    </a>
+                    <a href="http://lapecnatal.com.br/" class="btn-link">
+                        <i class="fas fa-microscope"></i> ANATOMO
+                    </a>
+                    <a href="https://siscan.saude.gov.br/login.jsf" class="btn-link">
+                        <i class="fas fa-venus"></i> SISCAM
+                    </a>
+                    <a href="#" class="btn-link destaque">
+                        <i class="fas fa-building"></i> SESAP-RN
+                    </a>
+                    <a href="https://app.pagesaude.com.br/v2/login" class="btn-link">
+                        <i class="fas fa-globe"></i> COPIRN
+                    </a>
+                    <a href="https://predsaude.com/" class="btn-link">
+                        <i class="fas fa-laptop-medical"></i> PREDSUS
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!----------------------- SISTEMAS ----------------------->
+        <section class="sistemas" id="Sistemas">
+            <div class="sistemas_header container">
+                <h2>SISTEMAS</h2>
+            </div>
+            <div class="sistemas_data container">
+                <div class="sistema_card destaque-sistema" id="sisreg">
+                    <h2><i class="fas fa-hospital"></i> SISREG III</h2>
+                    <div class="acoes">
+                        <a href="https://sisregiii.saude.gov.br/" class="btn-secundario">
+                            Acessar Sistema
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema" id="regulacirurgica">
+                    <h2><i class="fas fa-user-md"></i> REGULA CIRURGIA</h2>
+                    <div class="acoes">
+                        <a href="https://regulacirurgia.saude.rn.gov.br/index.php?class=LoginForm"
+                            class="btn-secundario">
+                            Acessar Sistema
+                        </a>
+                        <a href="{% url 'cadastrar_cirurgia' %}" class="btn-secundario">
+                            Cadastrar Paciente
+                        </a>
+                        <a href="{% url 'listar_cirurgia' %}"
+                            class="btn-secundario">
+                            Consultar Paciente
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-procedures"></i> REGULA RN</h2>
+                    <div class="acoes">
+                        <a href="https://ambulatorial.saude.rn.gov.br/" class="btn-secundario">
+                            Acessar Sistema
+                        </a>
+                        <a href="https://portal.cfm.org.br/busca-medicos" class="btn-secundario">
+                            Buscar Médicos
+                        </a>
+                        <a href="https://cnes.datasus.gov.br/pages/profissionais/consulta.jsp" class="btn-secundario">
+                            Consultar Profissional
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-microscope"></i> ANATOMO</h2>
+                    <div class="acoes">
+                        <a href="http://lapecnatal.com.br/" class="btn-secundario">
+                            Acessar Sistema
+                        </a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScjEBU-yyoRh_Hg-k1JSDT5Zi40SaAYjIhrl4SUBusjJP6d_g/viewform"
+                            class="btn-secundario">
+                            Cadastrar Solicitação
+                        </a>
+                        <a href="https://docs.google.com/spreadsheets/d/1JHqw7jJvK4mc4DohuYee00Hc1TLn7QN7M5ROzS1ps30/edit?gid=724091717#gid=724091717"
+                            class="btn-secundario">
+                            Consultar Planilha
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-venus"></i> SISCAM</h2>
+                    <div class="acoes">
+                        <a href="https://siscan.saude.gov.br/login.jsf" class="btn-secundario">
+                            Acessar Sistema
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-building"></i> SESAP-RN</h2>
+                    <div class="acoes">
+                        <a href="#" class="btn-secundario">Painel Administrativo</a>
+                        <a href="#" class="btn-secundario">Relatórios</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!----------------------- SOLICITAÇÕES ----------------------->
+        <section class="sistemas" id="Sistemas">
+            <div class="sistemas_header container">
+                <h2>SOLICITAÇÕES</h2>
+            </div>
+            <div class="sistemas_data container">
+                <div class="sistema_card destaque-sistema" id="sisreg">
+                    <h2><i class="fas fa-hospital"></i> CIRURGIAS</h2>
+                    <div class="acoes">
+                         <a href="{% url 'cadastrar_cirurgia' %}" class="btn-secundario">
+                            Cadastrar Paciente
+                        </a>
+                        <a href="{% url 'listar_cirurgia' %}"
+                            class="btn-secundario">
+                            Consultar Paciente
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema" id="regulacirurgica">
+                    <h2><i class="fas fa-user-md"></i> ESPECIALIDADES MÉDICAS</h2>
+                    <div class="acoes">
+                        <a href="{% url 'cadastrar_especialidade' %}" class="btn-secundario">
+                            Cadastrar Paciente
+                        </a>
+                        <a href="{% url 'listar_especialidade' %}"
+                            class="btn-secundario">
+                            Consultar Paciente
+                        </a>
+                    </div>
+                </div>
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-procedures"></i> EXAMES</h2>
+                    <div class="acoes">
+                        <a href="{% url 'cadastrar_exame' %}" class="btn-secundario">
+                            Cadastrar Paciente
+                        </a>
+                        <a href="{% url 'listar_exame' %}"
+                            class="btn-secundario">
+                            Consultar Paciente
+                        </a>
+                    </div>
+                </div>
+        </section>
+        <!----------------------- FICHAS ----------------------->
+        <section class="fichas" id="Fichas">
+            <div class="fichas_header container">
+                <h2>FICHAS</h2>
+            </div>
+            <div class="fichas_data container">
+                <div class="ficha-card">
+                    <h3>REGULA CIRURGIA</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Regula Cirurgia.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+
+                        <a href="{% static 'assets/pdf/Regula Cirurgia.pdf' %}" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+                <div class="ficha-card">
+                    <h3>REGULA RN</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Regula RN.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="{% static 'assets/pdf/Regula RN.pdf' %}" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+                <div class="ficha-card">
+                    <h3>AUTORIZAÇÃO AIH</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Autorização AIH.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="{% static 'assets/pdf/Autorização AIH.pdf' %}" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+                <div class="ficha-card">
+                    <h3>SOLICITAÇÃO DE EXAMES</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Solicitação de Exames.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="{% static 'assets/pdf/Solicitação de Exames.pdf' %}" download
+                            class="btn-download">Baixar</a>
+                    </div>
+                </div>
+                <div class="ficha-card">
+                    <h3>ENCAMINHAMENTO</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Encaminhamento.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="{% static 'assets/pdf/Encaminhamento.pdf' %}" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+                <div class="ficha-card">
+                    <h3>MAMOGRAFIA</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Mamografia.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="{% static 'assets/pdf/Mamografia.pdf' %}" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+                <div class="ficha-card">
+                    <h3>REQUISIÇÃO DE ANATOMO</h3>
+                    <div class="ficha-actions">
+                        <a href="{% static 'assets/pdf/Requisição de Anatomo.pdf' %}" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="{% static 'assets/pdf/Requisição de Anatomo.pdf' %}" download
+                            class="btn-download">Baixar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!----------------------- SCRIPTS ----------------------->
+    <script src="assets/js/regulaçao.js"></script>
+</body>
+
+</html>
+{% endblock %}

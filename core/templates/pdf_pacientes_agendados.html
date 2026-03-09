@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 1.8cm;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #2c3e50;
+        }
+
+        .header {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            width: 90px;
+        }
+
+        .titulo {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .subtitulo {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .info-agenda {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .info-agenda span {
+            margin-right: 30px;
+        }
+
+        .agenda-pacientes {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .agenda-pacientes th {
+            background: #f2f6f9;
+            border: 1px solid #d6e4ec;
+            padding: 8px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .agenda-pacientes td {
+            border: 1px solid #d6e4ec;
+            padding: 7px;
+        }
+
+        .agenda-pacientes tr:nth-child(even) {
+            background: #f8fbfd;
+        }
+
+        .numero {
+            width: 35px;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="{{ logo_path }}" class="logo">
+        <div class="titulo">
+        PREFEITURA MUNICIPAL DE CANGUARETAMA<br>
+        SECRETARIA MUNICIPAL DE SAÚDE<br>
+        CNPJ: 13.094.678/0001-22
+        </div>
+        <div class="subtitulo">
+            Lista de Pacientes Agendados
+        </div>
+    </div>
+
+    <div class="info-agenda">
+        <span><b>Especialidade:</b> {{ agenda.especialidade }}</span>
+        <span><b>Data da Agenda:</b> {{ agenda.data }}</span>
+        <span><b>Total de Vagas:</b> {{ agenda.total_vagas }}</span>
+        <span><b>Pacientes Agendados:</b> {{ pacientes|length }}</span>
+    </div>
+
+    <table class="agenda-pacientes">
+        <thead>
+            <tr>
+                <th class="numero">#</th>
+                <th>Nome</th>
+                <th>SUS</th>
+                <th>Telefone</th>
+                <th>UBS</th>
+                <th>ACS</th>
+                <th>Agendado por</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+            <tr>
+                <td class="numero">{{ forloop.counter }}</td>
+                <td>{{ paciente.nome }}</td>
+                <td>{{ paciente.sus }}</td>
+                <td>{{ paciente.telefone }}</td>
+                <td>{{ paciente.ubs }}</td>
+                <td>{{ paciente.agente }}</td>
+                <td>{{ paciente.criado_por.username }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">Nenhum paciente agendado</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="footer">
+        Gerado em
+        {{ agenda.criado_em|date:"d/m/Y H:i" }}
+    </div>
+
+</body>
+
+</html>

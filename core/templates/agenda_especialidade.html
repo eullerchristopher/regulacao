@@ -1,0 +1,89 @@
+{% extends 'base_ubs.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/agenda.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <!----------------------- MAIN ----------------------->
+    <main class="main">
+        <section class="section-agenda container">
+            <div class="agenda-container">
+                <div class="agenda-card">
+                    <div class="agenda-header">
+                        <h2>Agenda - {{ especialidade }}</h2>
+                    </div>
+                    <div class="agenda-body">
+                        <table class="agenda-table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Vagas UBS</th>
+                                    <th>Vagas Usadas</th>
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for agenda in agendas %}
+                                <tr>
+                                    <td>{{ agenda.data }}</td>
+                                    <td>
+                                        {% for ubs in agenda.agendaubs_set.all %}
+                                        {% if ubs.ubs == request.user.username %}
+                                        {{ ubs.vagas }}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for ubs in agenda.agendaubs_set.all %}
+                                        {% if ubs.ubs == request.user.username %}
+                                        {{ ubs.vagas_usadas }}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% if agenda.status == "andamento" %}
+                                        <span class="status status-open">
+                                            🟢 Em andamento
+                                        </span>
+                                        {% else %}
+                                        <span class="status status-closed">
+                                            🔴 Finalizada
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if agenda.status == "andamento" %}
+                                        <a href="{% url 'agendar_paciente' agenda.id %}" class="btn btn-primary">
+                                            Agendar
+                                        </a>
+                                        {% else %}
+                                        <span class="btn btn-disabled">
+                                            Encerrada
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Regulação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/styles/login.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="{% static 'assets/img/logo_img.jpeg' %}" class="logo">
+            <h1>Regulação</h1>
+            <p class="subtitle">Acesso ao sistema</p>
+           
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label>Usuário</label>
+                    <input type="text" name="username" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" name="password" placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Entrar
+                </button>
+                <a href="{% url 'cadastro' %}" class="btn-cadastro">
+                    Criar conta
+                </a>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

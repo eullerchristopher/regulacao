@@ -1,0 +1,123 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+         body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            width: 90px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .header-text {
+            font-size: 13px;
+            line-height: 1.3;
+            color: #0f6c94;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin: 5px 0 10px 0;
+            font-size: 18px;
+            color: #0f6c94;
+            letter-spacing: 1px;
+        }
+
+        .protocolo {
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0f6c94;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        td {
+            width: 50%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        td strong {
+            display: block;
+            color: #0f6c94;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #555;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ logo_src }}" class="logo" alt="Logo">
+
+        <div>ESTADO DO RIO GRANDE DO NORTE<br>
+        PREFEITURA MUNICIPAL DE CANGUARETAMA<br>
+        SECRETARIA MUNICIPAL DE SAÚDE<br>
+        CNPJ: 13.094.678/0001-22</div>
+
+        <h2>CENTRAL MUNICIPAL DE REGULAÇÃO</h2>
+        <div class="protocolo">PROTOCOLO: {{ paciente.protocolo }}</div>
+
+        <table class="info-table">
+            <tr>
+                <td><strong>Paciente</strong>{{ paciente.nome }}</td>
+                <td><strong>Cartão SUS</strong>{{ paciente.sus }}</td>
+            </tr>
+            <tr>
+                <td><strong>Telefone</strong>{{ paciente.telefone }}</td>
+                <td><strong>UBS</strong>{{ paciente.ubs }}</td>
+            </tr>
+            <tr>
+                <td><strong>Agente de Saúde</strong>{{ paciente.agente_saude }}</td>
+                <td><strong>Exame</strong>{{ paciente.exame }}</td>
+            </tr>
+            <tr>
+                <td><strong>Data de entrada</strong>{{ paciente.hora_cadastro|date:"d/m/Y H:i" }}</td>
+                <td><strong>Registrado por</strong>{{ paciente.criado_por.username }}</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            Guarde o número de protocolo para acompanhamento.<br><br>
+            Secretaria Municipal de Saúde de Canguaretama<br>
+            Rua Valentina Calafange, nº 75 - Cercado Grande<br>
+            Fone/Fax: (84) 3241-2697 | email: smscanguaretama@rn.gov
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,438 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/dashboard.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>REGULAÇÃO</h2>
+                <span>Painel Gerencial</span>
+            </div>
+            <ul>
+                <li onclick="mostrarPagina('resumo')" class="active">Resumo</li>
+                <li onclick="mostrarPagina('exames')">Exames</li>
+                <li onclick="mostrarPagina('especialidades')">Especialidades</li>
+                <li onclick="mostrarPagina('cirurgias')">Cirurgias</li>
+                <li onclick="mostrarPagina('usuarios')">Usuários</li>
+                <li onclick="mostrarPagina('agenda')">Agenda</li>
+            </ul>
+        </aside>
+        <!-- MAIN -->
+        <main class="main">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <a href="{% url 'regulacao' %}" class="btn-voltar">⬅ Página Inicial</a>
+                </div>
+                <div class="top-actions">
+                    <span class="admin-badge">
+                        {{ request.user.get_full_name|default:request.user.username }}
+                    </span>
+                </div>
+            </header>
+            <!-- RESUMO -->
+            <section class="pagina ativa" id="resumo">
+                <div class="cards">
+                    <div class="card">
+                        <h3>Pacientes</h3>
+                        <p>{{ total_pacientes }}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Exames</h3>
+                        <p>{{ total_exames }}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Especialidades</h3>
+                        <p>{{ total_especialidades }}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Cirurgias</h3>
+                        <p>{{ total_cirurgias }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXAMES -->
+            <section class="pagina" id="exames">
+                <div class="card-box">
+                    <h2>Gerenciar Exames</h2>
+
+                    <!-- BARRA DE PESQUISA -->
+                    <div class="barra-pesquisa">
+                        <form method="get" action="{% url 'dashboard' %}">
+                            <input type="text" name="busca_exame" placeholder="Buscar paciente, SUS ou exame..."
+                                value="{{ request.GET.busca_exame }}">
+                            <button type="submit" class="btn-pesquisar">Buscar</button>
+                        </form>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Paciente</th>
+                                <th>Cartão SUS</th>
+                                <th>Exame</th>
+                                <th>Protocolo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for exame in exames %}
+                            <tr>
+                                <td>{{ exame.criado_por.username }}</td>
+                                <td>{{ exame.nome }}</td>
+                                <td>{{ exame.sus }}</td>
+                                <td>{{ exame.exame }}</td>
+                                <td>{{ exame.protocolo }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5">Nenhum exame encontrado.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!-- PAGINAÇÃO -->
+                    <div class="paginacao">
+                        {% if exames.has_previous %}
+                        <a href="?page_exames={{ exames.previous_page_number }}">&laquo; Anterior</a>
+                        {% endif %}
+
+                        {% for num in exames.paginator.page_range %}
+                        {% if exames.number == num %}
+                        <span class="pagina-atual">{{ num }}</span>
+                        {% elif num > exames.number|add:'-3' and num < exames.number|add:'3' %} <a
+                            href="?page_exames={{ num }}">{{ num }}</a>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if exames.has_next %}
+                            <a href="?page_exames={{ exames.next_page_number }}">Próximo &raquo;</a>
+                            {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            <!-- ESPECIALIDADES -->
+            <section class="pagina" id="especialidades">
+                <div class="card-box">
+                    <h2>Gerenciar Especialidades</h2>
+
+                    <!-- BARRA DE PESQUISA -->
+                    <div class="barra-pesquisa">
+                        <form method="get" action="{% url 'dashboard' %}">
+                            <input type="text" name="busca_esp" placeholder="Buscar paciente, SUS ou especialidade..."
+                                value="{{ request.GET.busca_esp }}">
+                            <button type="submit" class="btn-pesquisar">Buscar</button>
+                        </form>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Paciente</th>
+                                <th>Cartão SUS</th>
+                                <th>Especialidade</th>
+                                <th>Protocolo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for esp in especialidades %}
+                            <tr>
+                                <td>{{ esp.criado_por.username }}</td>
+                                <td>{{ esp.nome }}</td>
+                                <td>{{ esp.sus }}</td>
+                                <td>{{ esp.especialidade }}</td>
+                                <td>{{ esp.protocolo }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5">Nenhuma especialidade encontrada.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!-- PAGINAÇÃO -->
+                    <div class="paginacao">
+                        {% if especialidades.has_previous %}
+                        <a href="?page_esp={{ especialidades.previous_page_number }}">&laquo; Anterior</a>
+                        {% endif %}
+
+                        {% for num in especialidades.paginator.page_range %}
+                        {% if especialidades.number == num %}
+                        <span class="pagina-atual">{{ num }}</span>
+                        {% elif num > especialidades.number|add:'-3' and num < especialidades.number|add:'3' %} <a
+                            href="?page_esp={{ num }}">{{ num }}</a>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if especialidades.has_next %}
+                            <a href="?page_esp={{ especialidades.next_page_number }}">Próximo &raquo;</a>
+                            {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            <!-- CIRURGIAS -->
+            <section class="pagina" id="cirurgias">
+                <div class="card-box">
+                    <h2>Gerenciar Cirurgias</h2>
+
+                    <!-- BARRA DE PESQUISA -->
+                    <div class="barra-pesquisa">
+                        <form method="get" action="{% url 'dashboard' %}">
+                            <input type="text" name="busca_cir" placeholder="Buscar paciente, SUS ou cirurgia..."
+                                value="{{ request.GET.busca_cir }}">
+                            <button type="submit" class="btn-pesquisar">Buscar</button>
+                        </form>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Paciente</th>
+                                <th>Cartão SUS</th>
+                                <th>Cirurgia</th>
+                                <th>Protocolo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cir in cirurgias %}
+                            <tr>
+                                <td>{{ cir.criado_por.username }}</td>
+                                <td>{{ cir.nome }}</td>
+                                <td>{{ cir.sus }}</td>
+                                <td>{{ cir.cirurgia }}</td>
+                                <td>{{ cir.protocolo }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5">Nenhuma cirurgia encontrada.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!-- PAGINAÇÃO -->
+                    <div class="paginacao">
+                        {% if cirurgias.has_previous %}
+                        <a href="?page_cir={{ cirurgias.previous_page_number }}">&laquo; Anterior</a>
+                        {% endif %}
+
+                        {% for num in cirurgias.paginator.page_range %}
+                        {% if cirurgias.number == num %}
+                        <span class="pagina-atual">{{ num }}</span>
+                        {% elif num > cirurgias.number|add:'-3' and num < cirurgias.number|add:'3' %} <a
+                            href="?page_cir={{ num }}">{{ num }}</a>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if cirurgias.has_next %}
+                            <a href="?page_cir={{ cirurgias.next_page_number }}">Próximo &raquo;</a>
+                            {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            <!-- USUÁRIOS -->
+            <section class="pagina" id="usuarios">
+                <div class="card-box">
+                    <h2>Usuários do Sistema</h2>
+
+                    <!-- CONTADORES -->
+                    <div class="cards">
+                        <div class="card">
+                            <h3>Reguladores</h3>
+                            <p>{{ total_reguladores }}</p>
+                        </div>
+                        <div class="card">
+                            <h3>UBS</h3>
+                            <p>{{ total_ubs }}</p>
+                        </div>
+                    </div>
+                    <br>
+
+                    <h3>Lista de Reguladores</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in reguladores %}
+                            <tr>
+                                <td>{{ user.get_full_name|default:user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <a href="{% url 'remover_usuario' user.id %}" class="btn-remover">
+                                        Remover
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3">Nenhum regulador encontrado</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br>
+
+                    <h3>Lista de Usuários UBS</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in usuarios_ubs %}
+                            <tr>
+                                <td>{{ user.get_full_name|default:user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <a href="{% url 'remover_usuario' user.id %}" class="btn-remover">
+                                        Remover
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3">Nenhum usuário UBS encontrado</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- AGENDA -->
+            <section class="pagina" id="agenda">
+                <div class="card-box">
+                    <h2>Agenda de Especialidades</h2>
+
+                    <!-- Criar nova agenda -->
+                    <a href="{% url 'criar_agenda' %}" class="btn-voltar">Criar Nova Agenda</a>
+                    <br><br>
+
+                    {% for agenda in agendas %}
+                    <div class="agenda-card">
+                        <input type="checkbox" id="agenda{{ agenda.id }}" class="toggle-agenda">
+                        <label for="agenda{{ agenda.id }}" class="toggle-label">
+                            {{ agenda.especialidade }} - {{ agenda.data }} ({{ agenda.get_status_display }})
+
+                        </label>
+
+                        <div class="agenda-content">
+
+                            <!-- Header com resumo e botão remover -->
+                            <div class="agenda-header-flex">
+                                <p class="agenda-info">
+                                    Total Vagas: {{ agenda.total_vagas }} |
+                                    Vagas por UBS: {{ agenda.vagas_por_ubs }} |
+                                    Vagas Regulação: {{ agenda.vagas_regulacao }} |
+                                    Vagas Restantes: {{ agenda.vagas_restantes }} |
+                                    Criado Por: {{ agenda.criado_por.username }}
+                                </p>
+                                <div>
+                                    <a href="{% url 'pdf_pacientes_agendados' agenda.id %}" class="btn-pdf" target="_blank">Gerar PDF</a>
+                                    <a href="{% url 'remover_agenda' agenda.id %}" class="btn-remover">Remover Agenda</a>
+                                </div>
+
+                            </div>
+
+                            <!-- Tabela de UBS -->
+                            <table class="agenda-ubs">
+                                <thead>
+                                    <tr>
+                                        <th>UBS</th>
+                                        <th>Vagas</th>
+                                        <th>Vagas Usadas</th>
+                                        <th>Vagas Restantes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ubs in agenda.agendaubs_set.all %}
+                                    <tr>
+                                        <td>{{ ubs.ubs }}</td>
+                                        <td>{{ ubs.vagas }}</td>
+                                        <td>{{ ubs.vagas_usadas }}</td>
+                                        <td>{{ ubs.vagas_restantes }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <!-- Tabela de pacientes agendados -->
+                            <h4>Pacientes Agendados:</h4>
+                            <table class="agenda-pacientes">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>SUS</th>
+                                        <th>Telefone</th>
+                                        <th>UBS</th>
+                                        <th>ACS</th>
+                                        <th>Agendado Em</th>
+                                        <th>Agendado Por</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for paciente in agenda.agendamentopaciente_set.all %}
+                                    <tr>
+                                        <td>{{ paciente.nome }}</td>
+                                        <td>{{ paciente.sus }}</td>
+                                        <td>{{ paciente.telefone }}</td>
+                                        <td>{{ paciente.ubs }}</td>
+                                        <td>{{ paciente.agente }}</td>
+                                        <td>{{ paciente.criado_em }}</td>
+                                        <td>{{ paciente.criado_por.username }}</td>
+                                        <td>
+                                            <a href="{% url 'remover_paciente_agenda' paciente.id %}"
+                                                class="btn-remover-paciente">Remover</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="8">Nenhum paciente agendado.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <hr>
+                        {% empty %}
+                        <p>Nenhuma agenda criada ainda.</p>
+                        {% endfor %}
+            </section>
+        </main>
+    </div>
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+
+</body>
+
+</html>
+
+{% endblock %}

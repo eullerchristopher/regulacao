@@ -1,0 +1,241 @@
+/* ==================== LISTAR ==================== */
+.listar {
+  min-height: 100vh;
+  margin-top: 2rem;
+}
+
+.listar_header h2 {
+  font-family: var(--font-titulo);
+  color: var(--azul);
+  font-size: 1.7rem;
+}
+
+.barra-pesquisa {
+  margin-top: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.barra-pesquisa form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.barra-pesquisa input {
+  padding: 10px 15px;
+  border: 1.5px solid #0f6c94;
+  border-radius: 10px;
+  width: 260px;
+  font-size: 13px;
+  transition: all 0.25s ease;
+}
+
+.barra-pesquisa input:focus {
+  outline: none;
+  border-color: #0b5776;
+  box-shadow: 0 0 5px rgba(15, 108, 148, 0.3);
+}
+
+.btn-pesquisar {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background: var(--azul);
+  box-shadow: 0 10px 25px rgba(15, 108, 148, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-pesquisar:hover {
+  transform: translateY(-2px);
+  background: #0f6c94;
+}
+
+.tabela-container {
+  margin-top: 2rem;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e4eef3;
+  overflow-x: auto;
+}
+
+table {
+  width: max-content;
+  min-width: 1200px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 16px 14px;
+  text-align: left;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+thead {
+  background: linear-gradient(135deg, #0f6c94, #0b5776);
+  color: #fff;
+}
+
+th {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #edf3f7;
+  transition: all 0.25s ease;
+}
+
+tbody tr:hover {
+  background: #f4fafd;
+}
+
+.acoes-tabela {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-tabela {
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #fff;
+}
+
+.comprovante {
+  background: #0f6c94;
+}
+
+.comprovante:hover {
+  background: #0b5776;
+  transform: translateY(-2px);
+}
+
+.editar {
+  background: #43a047;
+}
+
+.editar:hover {
+  background: #2e7d32;
+  transform: translateY(-2px);
+}
+
+.remover {
+  background: #e53935;
+}
+
+.remover:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+}
+
+.botoes-lista {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0f6c94, #0b5776);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(15, 108, 148, 0.25);
+}
+
+.btn-secundario {
+  background: #fff;
+  border: 1.5px solid #0f6c94;
+  color: #0f6c94;
+}
+
+.btn-secundario:hover {
+  background: #0f6c94;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.paginacao {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.paginacao a,
+.paginacao span.pagina-atual {
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.paginacao a {
+  background: #f2f6f9;
+  border: 1px solid #d6e4ec;
+  color: #333;
+}
+
+.paginacao a:hover {
+  background: #e2edf3;
+  border-color: #0f6c94;
+  color: #0f6c94;
+  transform: translateY(-2px);
+}
+
+/* Página atual */
+.paginacao span.pagina-atual {
+  background: #0f6c94;
+  color: #fff;
+  border: 1px solid #0b5776;
+}
+
+/*=============== RESPONSIVIDADE ===============*/
+@media (max-width: 768px) {
+ 
+  .paginacao {
+    justify-content: center;
+  }
+
+  .botoes-lista {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

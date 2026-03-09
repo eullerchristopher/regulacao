@@ -1,0 +1,330 @@
+{% extends 'base_ubs.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/ubs.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+<body>
+
+<!----------------------- MAIN ----------------------->
+    <main class="main">
+        <!----------------------- CANGUARETAMA ----------------------->
+        <section class="regulaçao">
+            <div class="regulaçao_overlay"></div>
+
+            <div class="regulaçao_data">
+                <h2>{{ user.username }}</h2>
+            </div>
+        </section>
+        
+        <!----------------------- AGENDAMENTOS ----------------------->
+        <section class="agendamentos" id="Agendamentos">
+
+            <div class="agendamentos_header container">
+                <h2>AGENDAR</h2>
+            </div>
+
+            <div class="agendamento_data container">
+                <div class="card-bloco">
+                    <h3 class="subtitulo">Especialidades</h3>
+                    <div class="grid-servicos">
+
+                        <!-- CONSULTAS -->
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-heartbeat"></i> Cardiologia</div>
+                            <div class="servico-botoes"><a href="{% url 'agenda_especialidade' 'Cardiologista' %}" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-ribbon"></i> Mastologia</div>
+                            <div class="servico-botoes"><a href="{% url 'agenda_especialidade' 'Mastologista' %}" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-baby"></i> Pediatria</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-stream"></i> Angiologista</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-eye"></i> Oftalmologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-allergies"></i> Dermatologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-brain"></i> Neurologia</div>
+                            <div class="servico-botoes"><a href="{% url 'agenda_especialidade' 'Neurologista' %}" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-child"></i> Psiquiatria Infantil</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-brain"></i> Neuro Pediátrico</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-ear-listen"></i> Otorrinolaringo</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-vial"></i> Endocrinologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-apple-alt"></i> Nutricionista</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-user-md"></i> Psiquiatria</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-stomach"></i> Gastroenterologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-female"></i> Ginecologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-bone"></i> Ortopedia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-procedures"></i> Urologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-hand-holding-medical"></i> Reumatologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- EXAMES -->
+                <div class="card-bloco">
+                    <h3 class="subtitulo">Exames</h3>
+                    <div class="grid-servicos">
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-heart"></i> ECO TT</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-wave-square"></i> USG</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-heartbeat"></i> ECG</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-camera-medical"></i> EDA</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TERAPIAS -->
+                <div class="card-bloco">
+                    <h3 class="subtitulo">Terapias</h3>
+                    <div class="grid-servicos">
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-dumbbell"></i> Fisioterapia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-brain"></i> Psicologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-child"></i> Psicologia Infantil</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-comments"></i> Fonoaudiologia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                        <div class="servico-card">
+                            <div class="servico-topo"><i class="fas fa-book-medical"></i> Psicopedagogia</div>
+                            <div class="servico-botoes"><a href="#" class="btn-servico">Agendar</a></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!----------------------- SISTEMAS ----------------------->
+        <section class="sistemas" id="Sistemas">
+
+            <div class="sistemas_header container">
+                <h2>SISTEMAS</h2>
+            </div>
+
+            <div class="sistemas_data container">
+
+                <!-- SISREG III -->
+                <div class="sistema_card destaque-sistema" id="sisreg">
+                    <h2><i class="fas fa-hospital"></i> SISREG III</h2>
+                    
+                    <div class="acoes">
+                        <a href="https://sisregiii.saude.gov.br/" class="btn-secundario">Acessar Sistema</a>
+                    </div>
+                </div>
+
+                <!-- REGULA CIRURGIA -->
+                <div class="sistema_card destaque-sistema" id="regulacirurgica">
+                    <h2><i class="fas fa-user-md"></i> REGULA CIRURGIA</h2>
+                    
+                    <div class="acoes">
+                        <a href="https://regulacirurgia.saude.rn.gov.br/index.php?class=LoginForm"
+                            class="btn-secundario">Acessar Sistema</a>
+                    </div>
+                </div>
+
+
+                <!-- REGULA RN -->
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-procedures"></i> REGULA RN</h2>
+                    
+
+                    <div class="acoes">
+                        <a href="https://ambulatorial.saude.rn.gov.br/" class="btn-secundario">Acessar Sistema</a>
+                    </div>
+                </div>
+
+                <!-- ANATOMO -->
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-microscope"></i> ANATOMO</h2>
+                    
+
+                    <div class="acoes">
+                        <a href="http://lapecnatal.com.br/" class="btn-secundario">Acessar Sistema</a>
+                    </div>
+                </div>
+
+
+                <!-- SISCAM -->
+                <div class="sistema_card destaque-sistema">
+                    <h2><i class="fas fa-venus"></i> SISCAM</h2>
+                    
+
+                    <div class="acoes">
+                        <a href="#https://siscan.saude.gov.br/login.jsf" class="btn-secundario">Acessar Sistema</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <!----------------------- FICHAS ----------------------->
+        <section class="fichas" id="Fichas">
+
+            <div class="fichas_header container">
+                <h2>FICHAS</h2>
+            </div>
+
+            <div class="fichas_data container">
+
+                <div class="ficha-card">
+                    <h3>REGULA CIRURGIA</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Regula Cirurgia.pdf" target="_blank" class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Regula Cirurgia.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+
+                <div class="ficha-card">
+                    <h3>REGULA RN</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Regula RN.pdf" target="_blank" class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Regula RN.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+
+                <div class="ficha-card">
+                    <h3>AUTORIZAÇÃO AIH</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Autorização AIH.pdf" target="_blank" class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Autorização AIH.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+
+                <div class="ficha-card">
+                    <h3>SOLICITAÇÃO DE EXAMES</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Solicitação de Exames.pdf" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Solicitação de Exames.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+
+                <div class="ficha-card">
+                    <h3>ENCAMINHAMENTO</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Encaminhamento.pdf" target="_blank" class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Encaminhamento.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+
+                <div class="ficha-card">
+                    <h3>MAMOGRAFIA</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Mamografia.pdf" target="_blank" class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Mamografia.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+
+                <div class="ficha-card">
+                    <h3>REQUISIÇÃO DE ANATOMO</h3>
+                    <div class="ficha-actions">
+                        <a href="assets/pdf/Requisição de Anatomo.pdf" target="_blank"
+                            class="btn-visualizar">Visualizar</a>
+                        <a href="assets/pdf/Requisição de Anatomo.pdf" download class="btn-download">Baixar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+{% endblock %}

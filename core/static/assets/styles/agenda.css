@@ -1,0 +1,149 @@
+/* ================= AGENDA ================= */
+
+.section-agenda {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 80vh;
+}
+
+.agenda-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.agenda-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+
+.agenda-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.agenda-header h2 {
+    font-size: 22px;
+    color: #0f6c94;
+}
+
+.agenda-body {
+    width: 100%;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #dce6ee;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #0f6c94;
+}
+
+
+.form-actions {
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #0f6c94;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #094e6a;
+}
+
+.btn-disabled {
+    background: #ecf0f1;
+    color: #7f8c8d;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.agenda-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.agenda-table thead {
+    background: #f1f7fb;
+}
+
+.agenda-table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.agenda-table td {
+    padding: 12px;
+    border-top: 1px solid #eef3f6;
+    font-size: 14px;
+}
+
+.agenda-table tr:hover {
+    background: #f9fcff;
+}
+
+.status {
+    font-weight: 600;
+}
+
+.status-open {
+    color: #2e7d32;
+}
+
+.status-closed {
+    color: #c0392b;
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:768px) {
+
+    .agenda-card {
+        padding: 20px;
+    }
+
+    .agenda-table th,
+    .agenda-table td {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+}

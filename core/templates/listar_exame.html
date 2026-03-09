@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Regulação</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'assets/styles/listar_solicitacao.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo_img.jpeg' %}">
+</head>
+
+<body>
+    <main class="main">
+        <!----------------------- LISTAR EXAMES ----------------------->
+        <section class="listar" id="Listar">
+            <div class="listar_header container">
+                <h2>LISTAR PACIENTES - EXAMES</h2>
+            </div>
+            <div class="listar_data container">
+                <!------------------- BUSCA ------------------->
+                <div class="barra-pesquisa">
+                    <form method="get">
+                        <input type="text" name="busca" placeholder="Buscar paciente, SUS ou protocolo..."
+                            value="{{ busca|default:'' }}">
+                        <button type="submit" class="btn-pesquisar">Buscar</button>
+                    </form>
+                </div>
+                <div class="tabela-scroll tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Hora Cadastro</th>
+                                <th>Paciente</th>
+                                <th>SUS</th>
+                                <th>Telefone</th>
+                                <th>UBS</th>
+                                <th>Agente de Saúde</th>
+                                <th>Exame</th>
+                                <th>Protocolo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for paciente in pacientes %}
+                            <tr>
+                                <td>{{ paciente.criado_por.username }}</td>
+                                <td>{{ paciente.hora_cadastro|date:"d/m/Y H:i" }}</td>
+                                <td>{{ paciente.nome }}</td>
+                                <td>{{ paciente.sus }}</td>
+                                <td>{{ paciente.telefone }}</td>
+                                <td>{{ paciente.ubs }}</td>
+                                <td>{{ paciente.agente_saude }}</td>
+                                <td>{{ paciente.exame }}</td>
+                                <td>{{ paciente.protocolo }}</td>
+                                <td class="acoes-tabela">
+
+                                    <a href="{% url 'comprovante_exame' paciente.id %}">
+                                        <button class="btn-tabela comprovante">
+                                            Comprovante
+                                        </button>
+                                    </a>
+
+                                    <a href="{% url 'editar_exame' paciente.id %}">
+                                        <button class="btn-tabela editar">Editar</button>
+                                    </a>
+
+                                    <a href="{% url 'remover_exame' paciente.id %}">
+                                        <button class="btn-tabela remover">Remover</button>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="9">Nenhum paciente cadastrado.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!------------------- PAGINAÇÃO ------------------->
+                <div class="paginacao">
+                    {% if pacientes.has_previous %}
+                    <a href="?page={{ pacientes.previous_page_number }}{% if busca %}&busca={{ busca }}{% endif %}">&laquo;
+                        Anterior</a>
+                    {% endif %}
+
+                    {% for num in pacientes.paginator.page_range %}
+                    {% if pacientes.number == num %}
+                    <span class="pagina-atual">{{ num }}</span>
+                    {% elif num > pacientes.number|add:'-3' and num < pacientes.number|add:'3' %} <a
+                        href="?page={{ num }}{% if busca %}&busca={{ busca }}{% endif %}">{{ num }}</a>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if pacientes.has_next %}
+                        <a href="?page={{ pacientes.next_page_number }}{% if busca %}&busca={{ busca }}{% endif %}">Próximo
+                            &raquo;</a>
+                        {% endif %}
+                </div>
+                <div class="botoes-lista">
+                    <a href="{% url 'cadastrar_exame' %}" class="btn btn-secundario">Cadastrar Paciente</a>
+                    <a href="{% url 'regulacao' %}" class="btn btn-primary">Página Inicial</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!----------------------- SCRIPTS ----------------------->
+    <script src="https://kit.fontawesome.com/2f89107e0d.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
+{% endblock %}
